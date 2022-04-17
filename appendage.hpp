@@ -12,7 +12,7 @@ class Appendage
 		Joint* J2;	
 		float  Length;
 	public:
-		Appendage(Joint* J1, Joint J2, float Length);
+		Appendage(Joint* J1, Joint* J2, float Length);
 };
 
 #endif

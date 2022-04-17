@@ -18,6 +18,9 @@ class Point3
 		void  SetY(float y);
 		void  SetZ(float z);
 		bool operator == (const Point3& other) const;
+		
+		Point3* operator =(const Point3& EqualTo);
+		Point3* operator +(const Point3& Added);
 		friend std::ostream& operator <<  (std::ostream& out, const Point3& point);
 };
 

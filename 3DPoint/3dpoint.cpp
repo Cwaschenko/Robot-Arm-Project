@@ -32,6 +32,25 @@ bool Point3::operator==(const Point3& other) const
 	}
 }
 
+Point3* Point3::operator =(const Point3& EqualTo)
+{
+
+	this->x = EqualTo.GetX();
+	this->y = EqualTo.GetY();
+	this->z = EqualTo.GetZ();
+	return this;
+}
+
+Point3* Point3::operator+(const Point3& Added)
+{
+	
+	this->x += Added.GetX();
+	this->y += Added.GetY();
+	this->z += Added.GetZ();
+
+	return this;
+}
+
 float Point3::GetX() const
 {
 	return this->x;

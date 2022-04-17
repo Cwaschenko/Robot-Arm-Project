@@ -1,4 +1,4 @@
-#incude "appendage.hpp"
+#include "appendage.hpp"
 
 Appendage::Appendage(Joint* J1, Joint* J2, float Length)
 {

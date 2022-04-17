@@ -22,7 +22,7 @@ TEST_CASE("3D poinr Test")
 	CHECK(p->GetY() == 1.0);	
 	CHECK(p->GetZ() == 1.0);	
 	
-	p->Add(p2);
+	p = *p + *p2;
 
 	CHECK(p->GetX() == 3.0);	
 	CHECK(p->GetY() == 3.0);	

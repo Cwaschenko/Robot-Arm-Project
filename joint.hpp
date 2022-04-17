@@ -11,7 +11,10 @@ class Joint
 
 	public:
 		Joint();
-		void SetAngle(float Angle);
-		void SetPos(Point3 Pos);
+		void   SetAngle(float Angle);
+		void   SetPos(Point3 Pos);
+		Point3 GetPos();
+		float  GetAngle();
+		
 };
 #endif
