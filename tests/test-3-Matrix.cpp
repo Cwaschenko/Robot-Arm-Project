@@ -22,7 +22,7 @@ TEST_CASE("Matrix initialization setters and getters")
 TEST_CASE("Matrix Addition Operation")
 {
 
-	Matrix m("Big Fat Matrix!!");
+	Matrix m("Big Fat Matrix!!",3,3);
 	Matrix m1; 
 	Matrix m2;
 	
@@ -47,9 +47,8 @@ TEST_CASE("Matrix Multiplication")
 {
 
 
-	Matrix m1("Matrix 1");
-	Matrix m2("Matrix 2");
-	Matrix m("Result Matrix");
+	Matrix m1("Matrix 1",3,3);
+	Matrix m2("Matrix 2",3,3);
 
 	for(int y = 0; y < 3; ++y)
 	{	
@@ -60,10 +59,10 @@ TEST_CASE("Matrix Multiplication")
 		}
 	}
 	
-	m = m1 * m2;
+	m1.Dot(m2);
 
-	CHECK(m.GetPoint(0,0) == 72.0);
-	CHECK(m.GetPoint(0,2) == 72.0);
-	m.ShowMatrix();	
+	CHECK(m1.GetPoint(0,0) == 72.0);
+	CHECK(m1.GetPoint(0,2) == 72.0);
+	m1.ShowMatrix();	
 
 }

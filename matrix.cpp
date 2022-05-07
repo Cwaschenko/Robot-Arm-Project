@@ -15,14 +15,19 @@ Matrix::Matrix()
 
 }
 
-Matrix::Matrix(std::string name)
+Matrix::Matrix(std::string name, int NumOfRows, int NumOfCols)
 {
+
 	this->name = name;
+	
+	this->NumOfRows = NumOfRows;
+	this->NumOfCols = NumOfCols;
+	
 	this->matrix = new float*;
-	for(int y = 0; y < 3; ++y)
+	for(int y = 0; y < this->NumOfRows; ++y)
 	{
 		this->matrix[y] = new float;
-		for(int x = 0; x < 3; ++x)
+		for(int x = 0; x < this->NumOfCols; ++x)
 		{
 			this->matrix[y][x] = 0.0;
 		}
@@ -51,6 +56,35 @@ float Matrix::GetPoint(int x, int y)const
 		return this->matrix[y][x];
 	}
 }
+
+int Matrix::GetNumOfCols() const
+{
+	return this->NumOfCols;
+}
+
+int Matrix::GetNumOfRows() const
+{
+	return this->NumOfRows;
+}
+
+void Matrix::Dot(const Matrix& other)
+{
+	//check rows and cols of each matrix 
+	//if valid distribute other matrix to this matrix
+	//print error if false
+	if (this->NumOfCols == other.GetNumOfCols() || this->NumOfRows == other.GetNumOfRows())
+	{
+		for(int y = 0; y < other.GetNumOfRows(); ++y)
+		{
+			for(int x = 0; x < other.GetNumOfCols(); ++x)
+			{
+				float NewPoint = this->GetPoint(x,y) * other.GetPoint(x,y);
+				this->SetPoint(x,y, NewPoint);
+			}
+		}
+	}
+}
+
 
 void Matrix::SetPoint(int x, int y, float value)const
 {
@@ -112,20 +146,3 @@ Matrix& Matrix::operator+(const Matrix& other)
 
 }
 
-
-Matrix& Matrix::operator* (const Matrix& other)
-{
-	float NewValue;
-
-	for(int y =0; y < 3; ++y)
-	{	
-		for(int x = 0; x < 3; ++x)
-		{
-			NewValue = this->GetPoint(x,y) * other.GetPoint(x,y);	
-			this->SetPoint(x,y,NewValue);	
-		}
-	}
-	return *this;
-
-
-}
