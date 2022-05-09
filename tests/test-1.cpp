@@ -1,4 +1,3 @@
-
 #include "catch/catch.hpp"
 #include "../appendage.hpp"
 #include "../joint.hpp"

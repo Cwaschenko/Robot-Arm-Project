@@ -7,11 +7,10 @@ class Joint
 {
 	private:
 		Point3 Pos;
-		float   Angle;
-
+		float  Angle;
 	public:
 		Joint();
-		void   SetAngle(float Angle);
+		void   Rotate(float Angle);
 		void   SetPos(Point3 Pos);
 		Point3 GetPos();
 		float  GetAngle();

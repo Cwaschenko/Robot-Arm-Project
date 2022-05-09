@@ -6,10 +6,12 @@ Joint::Joint()
 	this->Angle = 0.0;
 }
 
-void Joint::SetAngle(float Angle)
+void Joint::Rotate(float Angle)
 {
-	this->Angle = Angle;
+	this->Angle =+ Angle;
 }
+
+
 
 void Joint::SetPos(Point3 Pos)
 {
