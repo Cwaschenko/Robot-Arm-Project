@@ -1,5 +1,4 @@
 #include "catch/catch.hpp"
-#include "../appendage.hpp"
 #include "../joint.hpp"
 #include "../3DPoint/3dpoint.hpp"
 

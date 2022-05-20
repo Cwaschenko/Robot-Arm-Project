@@ -11,7 +11,7 @@ class Arm
 		Joint* Joints;
 		Matrix* Projections;
 	public:
-		Arm(int,float,Joint*);
+		Arm(int,float);
 		void Display();
 		void Display(int);
 		void Rotate(int,float);
