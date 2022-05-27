@@ -37,6 +37,23 @@ class Matrix: Matrix(string name, int NumOfCols, int NumOfRows);
  -   the distance between each joint
  -   Hight and width of each acuator
 
+what can be wrapped in Joint class
+- Acuator type 
+  - would take care of
+    - height
+    - width
+    - weight
+    - name
+    - orientation
+
+what can be wraped in Arm class
+ - order of each Joint
+  - number of Joints
+
+what can be wrapped in link class
+- distance between Joints
+
+--- 
 ```
  0
 R   means rotation of frame one relative to frame zero
