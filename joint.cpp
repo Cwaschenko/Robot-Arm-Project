@@ -1,5 +1,36 @@
 #include "joint.hpp"
 
+Joint::Joint(std::string AcuatorType)
+{
+		std::fstream fs;
+		std::string CurrentLine = "";
+		float CurrentNumber;
+		fs.open(AcuatorType);
+		getline(fs, CurrentLine);
+		this->Name = CurrentLine;
+		fs >> CurrentNumber;
+		this->Height = CurrentNumber;
+		fs >> CurrentNumber;
+		this->Width = CurrentNumber;
+		fs >> CurrentNumber;
+		this->Orientation = CurrentNumber;
+		fs >> CurrentLine;
+		if(CurrentLine == "None")
+		{
+			this->Connection = nullptr;
+		}
+		else
+		{
+			fs >> CurrentNumber;
+			this->Connection = new Link(this, CurrentLine, CurrentNumber);
+		}
+		fs.close();
+		this->Angle = 0.0;
+		// *** TODO *** position initialization
+		
+
+}
+
 Joint::Joint(int Orientation, std::string Name)
 {
 	this->Orientation = Orientation;
