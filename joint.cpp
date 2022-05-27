@@ -18,15 +18,6 @@ Joint::Joint(std::string AcuatorType)
 		this->Orientation = CurrentNumber;
 		fs >> CurrentLine;
 
-		if(CurrentLine == "None")
-		{
-			this->Connection = nullptr;
-		}
-		else
-		{
-			fs >> CurrentNumber;
-			this->Connection = new Link(this, CurrentLine, CurrentNumber);
-		}
 
 		fs.close();
 		
@@ -38,6 +29,8 @@ Joint::Joint(std::string AcuatorType)
 Joint::Joint(int Orientation, std::string Name)
 {
 	this->Orientation = Orientation;
+	this->Height = 0;
+	this->Width = 0;
 	this->Name = Name;
 	this->Pos = new Point3(0,0,0);
 	this->Angle = 0.0;
@@ -47,7 +40,14 @@ Joint::Joint()
 	this->Orientation = 0;
 	this->Name = "Default Joint";
 	this->Pos = new Point3(0,0,0);
+	this->Height = 0;
+	this->Width = 0;
 	this->Angle = 0.0;
+}
+
+Joint::~Joint()
+{
+	delete this->Pos;
 }
 
 void Joint::Rotate(float Angle)
@@ -63,9 +63,9 @@ std::string Joint::GetName()
 {
 	return this->Name;
 }
-Point3 Joint::GetPos()
+Point3* Joint::GetPos()
 {
-	return *this->Pos;
+	return this->Pos;
 }
 
 float Joint::GetAngle()
@@ -77,3 +77,12 @@ int Joint::GetOrientation()
 	return this->Orientation;
 }
 
+float Joint::GetHeight()
+{
+	return this->Height;
+}		
+		
+float Joint::GetWidth()
+{
+	return this->Width;
+}

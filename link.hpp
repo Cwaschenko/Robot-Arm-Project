@@ -1,6 +1,6 @@
 #ifndef LINK_HPP
 #define LINK_HPP
-
+#include "joint.hpp"
 #include <string>
 
 class Link
@@ -11,7 +11,6 @@ class Link
             float length;
     public:
             Link(Joint* Base, Joint* End, float length);
-            ~Link();
             Joint* GetBase();
             Joint* GetEnd();
 

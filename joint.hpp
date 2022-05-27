@@ -2,7 +2,6 @@
 #define JOINT_HPP
 
 #include "3DPoint/3dpoint.hpp"
-#include "link.hpp"
 #include <cmath>
 #include <fstream>
 #include <string>
@@ -13,7 +12,6 @@ class Joint
 		std::string Name;
 		float Height;
 		float Width;
-		Link* Connection;
 		int Orientation;
 		Point3* Pos;
 		float  Angle;
@@ -27,7 +25,6 @@ class Joint
 		void SetPos(Point3 Pos);
 		float GetHeight();
 		float GetWidth();
-		Link* GetConnection();
 		std::string GetName();
 		Point3* GetPos();
 		int GetOrientation();

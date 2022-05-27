@@ -13,5 +13,5 @@ TEST_CASE("Testing Link initialization")
 
     CHECK(l.GetBase() == J1);
     CHECK(l.GetEnd() == J2);
-
+    
 }

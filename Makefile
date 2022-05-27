@@ -18,7 +18,7 @@ test-5: tests/test-joint.cpp joint.o 3DPoint/3dpoint.o tests/catch/catch.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 	./$@
 
-test-6: tests/test-link.cpp link.o 3DPoint/3dpoint.o tests/catch/catch.o
+test-6: tests/test-link.cpp joint.o link.o 3DPoint/3dpoint.o tests/catch/catch.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 	./$@
 	
