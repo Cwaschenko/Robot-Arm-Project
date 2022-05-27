@@ -12,7 +12,7 @@
 ```cpp
 class ForwawrdKinematics: ForwardKinematics(Arm* 3DOF_Manipulator());
 class Arm: Arm(int NumOfJoints,int NumOfLinks);
-class Joint: Joint(string Name, bool Orientation); 
+class Joint: Joint("Base.ACU"); 
 class Matrix: Matrix(string name, int NumOfCols, int NumOfRows);
 
 ```
