@@ -23,10 +23,13 @@ class Joint
 		Joint(std::string AcuatorType);
 		Joint(int Orientation, std::string Name);
 		~Joint();
-		void   Rotate(float Angle);
-		void   SetPos(Point3 Pos);
+		void Rotate(float Angle);
+		void SetPos(Point3 Pos);
+		float GetHeight();
+		float GetWidth();
+		Link* GetConnection();
 		std::string GetName();
-		Point3 GetPos();
+		Point3* GetPos();
 		int GetOrientation();
 		float  GetAngle();
 		

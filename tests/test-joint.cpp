@@ -1,8 +1,6 @@
 #include "catch/catch.hpp"
 #include <iostream>
 #include "../joint.hpp"
-#include "../arm.hpp"
-#include "../matrix.hpp"
 #include "../3DPoint/3dpoint.hpp"
 
 TEST_CASE("Testing Joint Configuration with Input File")
@@ -32,7 +30,7 @@ TEST_CASE("Testing Rotate Function")
 	newJoint.Rotate(20.2);
 	CHECK(newJoint.GetAngle() == 20.2);
 	std::cout << newJoint.GetName() << "\nAngle: " << newJoint.GetAngle() << "\n";
-	
+
 }
 
 	

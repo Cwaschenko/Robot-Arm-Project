@@ -10,7 +10,7 @@ class Link
             Joint* End;
             float length;
     public:
-            Link(Joint* Base, std::string End, float length);
+            Link(Joint* Base, Joint* End, float length);
             ~Link();
             Joint* GetBase();
             Joint* GetEnd();
