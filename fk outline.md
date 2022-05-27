@@ -12,10 +12,13 @@
 ```cpp
 class ForwawrdKinematics: ForwardKinematics(Arm* 3DOF_Manipulator());
 class Arm: Arm(int NumOfJoints,int NumOfLinks);
-class Joint: Joint(string Name, bool Orientation);
+class Joint: Joint(string Name, bool Orientation); 
 class Matrix: Matrix(string name, int NumOfCols, int NumOfRows);
+
 ```
 ## Joint
+- Needs to be able to read acuator type file 
+  - configure as needed
 - keeps track of angle of joint
 - knows if horizantal or virtical
 - keeps track of 3d point of center point of carrier exterior face relative to base frame
@@ -45,13 +48,17 @@ what can be wrapped in Joint class
     - weight
     - name
     - orientation
+    - contains a link
+- pointer to link if present
 
 what can be wraped in Arm class
  - order of each Joint
   - number of Joints
 
 what can be wrapped in link class
-- distance between Joints
+- distance between 
+- base and end joints
+
 
 --- 
 ```
@@ -97,6 +104,4 @@ z0 | 0            0             1
  0    0 1
 R  = R R
  2    1 2
-
-
 ```
