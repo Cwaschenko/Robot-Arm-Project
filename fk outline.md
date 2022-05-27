@@ -26,8 +26,16 @@ class Matrix: Matrix(string name, int NumOfCols, int NumOfRows);
 - can chose a joint then rotate it
   - calculate each point relative to base frame
 - returns each joint position and angle
----
 
+
+## How to Automate the Initialization of the Positions of Each Joint In an Arm
+ 
+ what do you need to know:
+ -   Number of Joints
+ -   the orientation of each joint
+ -   the order of each joint 
+ -   the distance between each joint
+ -   Hight and width of each acuator
 
 ```
  0
