@@ -34,15 +34,13 @@ TEST_CASE("3D Point Test")
 
 TEST_CASE("Test Joint Class")
 {
-	Joint* J1 = new Joint;
-	Joint* J2 = new Joint;
+	Joint J1 =  Joint();
+	Joint J2 =  Joint();
 
 
-	CHECK(J1->GetPos() == Point3(0,0,0));
+	CHECK(J1.GetPos() == Point3(0,0,0));
 	
-	J1->SetPos(Point3(1,1,1));
-	CHECK(J1->GetPos() == Point3(1,1,1));
+	J1.SetPos(Point3(1,1,1));
+	CHECK(J1.GetPos() == Point3(1,1,1));
 
-	delete J1;
-	delete J2;
 }

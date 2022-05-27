@@ -4,7 +4,14 @@ Joint::Joint(int Orientation, std::string Name)
 {
 	this->Orientation = Orientation;
 	this->Name = Name;
-	this->Pos = Point3(0,0,0);
+	this->Pos = new Point3(0,0,0);
+	this->Angle = 0.0;
+}
+Joint::Joint()
+{
+	this->Orientation = 0;
+	this->Name = "Default Joint";
+	this->Pos = new Point3(0,0,0);
 	this->Angle = 0.0;
 }
 
@@ -15,7 +22,7 @@ void Joint::Rotate(float Angle)
 
 void Joint::SetPos(Point3 Pos)
 {
-	this->Pos = Pos;
+	*this->Pos = Pos;
 }
 std::string Joint::GetName()
 {
@@ -23,7 +30,7 @@ std::string Joint::GetName()
 }
 Point3 Joint::GetPos()
 {
-	return this->Pos;
+	return *this->Pos;
 }
 
 float Joint::GetAngle()

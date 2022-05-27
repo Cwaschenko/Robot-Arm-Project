@@ -1,8 +1,8 @@
 
 CXX = g++
-CXXFLAGS = -g -std=c++11 -Wall -Werror=return-type -Werror=uninitialized
+CXXFLAGS = -g -std=c++11 -Wall -Werror=return-type -Werror=uninitialized -no-pie
 
-test-1: tests/test-1.o appendage.o tests/catch/catch.o joint.o 3DPoint/3dpoint.o
+test-1: tests/test-1.o  tests/catch/catch.o joint.o 3DPoint/3dpoint.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 	./$@
 

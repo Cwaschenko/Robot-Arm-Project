@@ -10,10 +10,11 @@ class Joint
 	private:
 		std::string Name;
 		int Orientation;
-		Point3 Pos;
+		Point3* Pos;
 		float  Angle;
 
 	public:
+		Joint();
 		Joint(int Orientation, std::string Name);
 		void   Rotate(float Angle);
 		void   SetPos(Point3 Pos);
