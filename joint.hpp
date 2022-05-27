@@ -13,6 +13,7 @@ class Joint
 		std::string Name;
 		float Height;
 		float Width;
+		Link* Connection;
 		int Orientation;
 		Point3* Pos;
 		float  Angle;
