@@ -54,6 +54,12 @@ void Arm::AddLink(int BasePos, int EndPos, float Length)
 
 }
 
+Joint* Arm::GetJoint(int JointIndex)
+{
+	return this->Joints.at(JointIndex);
+}
+
+
 void Arm::Display()
 {
 	std::cout << this->Name << std::endl;

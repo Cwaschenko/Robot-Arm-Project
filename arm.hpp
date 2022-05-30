@@ -22,7 +22,7 @@ class Arm
 		void AddJoint(std::string ACTUATOR_CONFIG);
 		void AddLink(int BasePos, int EndPos, float Length);
 		void Display();
-		void Display(int);
+		Joint* GetJoint(int JointIndex);
 		void Rotate(int,float);
 
 
