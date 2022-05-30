@@ -29,6 +29,7 @@
 |Name | Pin Number | Description|
 |------|-------------|-------------|
 |EN|8| Enable pin // _Active High_|
+| | | |
 
 ## DRV8825 Driver Specications
 ---
@@ -62,4 +63,10 @@
 |B1|13|
 |A1|12|
 |A2|11|
+
+## AS5600 Magnetic Encoder Specifications
+---
+
+
+### Pin Descriptions
 

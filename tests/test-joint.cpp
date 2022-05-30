@@ -5,14 +5,14 @@
 
 TEST_CASE("Testing Joint Configuration with Input File")
 {
-	Joint newJoint("../Actuator-Types/base.acu");
+	Joint newJoint("actuator-types/base.txt");
 	Point3* CurrentPos = new Point3;
 
 	CHECK(newJoint.GetName() == "Base Acuator");
 	CHECK(newJoint.GetAngle() == 0.0);
 	CHECK(newJoint.GetHeight() == 110);
 	CHECK(newJoint.GetWidth() == 120);
-	CHECK(newJoint.GetPos() == CurrentPos);
+	CHECK(*newJoint.GetPos() == *CurrentPos);
 	
 	std::cout << newJoint.GetName() << "\nAngle: " << newJoint.GetAngle() << "\n";
 	
@@ -25,10 +25,13 @@ TEST_CASE("Testing Joint Configuration with Input File")
 
 TEST_CASE("Testing Rotate Function")
 {
-	Joint newJoint("../Acuator-Types/base.acu");
+	Joint newJoint("actuator-types/base.txt");
 	newJoint.Rotate(20.2);
-	CHECK(newJoint.GetAngle() == 20.2);
-	std::cout << newJoint.GetName() << "\nAngle: " << newJoint.GetAngle() << "\n";
+	CHECK(newJoint.GetAngle() == 20.2f);
+	newJoint.SetPos(Point3(60,0,110));
+	CHECK(*newJoint.GetPos() == Point3(60,0,110));
+	std::cout << "Angle: " << newJoint.GetAngle() << "\n";
+	std::cout << "Current Position: " << *newJoint.GetPos() << "\n";
 
 }
 

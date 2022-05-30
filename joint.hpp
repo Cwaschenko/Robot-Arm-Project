@@ -4,6 +4,7 @@
 #include "3DPoint/3dpoint.hpp"
 #include <cmath>
 #include <fstream>
+#include <sstream>
 #include <string>
 
 class Joint

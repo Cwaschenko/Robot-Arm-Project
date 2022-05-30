@@ -2,27 +2,22 @@
 
 Joint::Joint(std::string AcuatorType)
 {
-		std::fstream fs;
+		std::ifstream fs;
+		std::stringstream ss;
 		std::string CurrentLine = "";
+		std::string additional = "";
 		float CurrentNumber;
 
 		fs.open(AcuatorType);
-
 		getline(fs, CurrentLine);
+		CurrentLine.erase(CurrentLine.length()-1);
 		this->Name = CurrentLine;
-		fs >> CurrentNumber;
-		this->Height = CurrentNumber;
-		fs >> CurrentNumber;
-		this->Width = CurrentNumber;
-		fs >> CurrentNumber;
-		this->Orientation = CurrentNumber;
-		fs >> CurrentLine;
-
-
+		getline(fs, CurrentLine);
+		ss.str(CurrentLine);
+		ss >> this->Height >> this->Width;
 		fs.close();
 		
 		this->Angle = 0.0;
-		// *** TODO *** position initialization
 		this->Pos = new Point3(0,0,0);
 }
 
