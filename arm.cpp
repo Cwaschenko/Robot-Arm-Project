@@ -41,7 +41,40 @@ Arm::Arm(std::string ARM_CONFIG)
 	fs.close();
 
 	// Positioning Each Actuator in correct spot
+	Joint* CurrentJoint = nullptr;
+	for(int i = 0; i < this->NumOfJoints; ++i)
+	{
+		CurrentJoint = this->GetJoint(i);
+		if(i == 0)
+		{
+			CurrentJoint->SetPos(Point3(0,0,CurrentJoint->GetHeight()));
+		}
+		else
+		{
+			if(this->HasLink(CurrentJoint))
+			{
+				if(CurrentJoint->GetOrientation() == 0) // Vertical
+				{
+					CurrentJoint->SetPos(Point3()); //Height +
+				}
+				else
+				{
 
+				}
+			}
+			else
+			{
+				if(CurrentJoint->GetOrientation() == 0)
+				{
+					CurrentJoint->SetPos(Point3());
+				}
+				else
+				{
+
+				}
+			}
+		}
+	}
 
 }
 
@@ -68,6 +101,19 @@ Link* Arm::GetLink(int LinkIndex)
 	return this->Links.at(LinkIndex);
 }
 
+bool Arm::HasLink(Joint* Quaried)
+{
+	Link* CurrentLink = nullptr;
+	for(int i = 0; i < this->NumOfLinks; ++i)
+	{
+		CurrentLink = this->GetLink(i);
+		if(Quaried == CurrentLink->GetBase())
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 void Arm::Display()
 {
