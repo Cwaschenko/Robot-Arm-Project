@@ -1,0 +1,6 @@
+3
+actuator-types/base.txt
+actuator-types/shoulder.txt
+actuator-types/elbow.txt
+1 2 300
+
