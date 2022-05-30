@@ -5,6 +5,7 @@
 #include <cmath>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <string>
 
 class Joint
@@ -22,6 +23,7 @@ class Joint
 		Joint(std::string AcuatorType);
 		Joint(int Orientation, std::string Name);
 		~Joint();
+		void Display();
 		void Rotate(float Angle);
 		void SetPos(Point3 Pos);
 		float GetHeight();

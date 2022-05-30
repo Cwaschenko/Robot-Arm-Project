@@ -48,6 +48,12 @@ Joint::~Joint()
 	delete this->Pos;
 }
 
+void Joint::Display()
+{
+	std::cout << this->Name << "\t| Angle: " << this->Angle << "\t| Current Position: " << this->Pos;
+	std::cout << "\t| Orientation: " << this-> Orientation << std::endl;
+}
+
 void Joint::Rotate(float Angle)
 {
 	this->Angle =+ Angle;

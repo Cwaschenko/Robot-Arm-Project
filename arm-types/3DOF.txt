@@ -1,3 +1,4 @@
+3DOF Manipulator
 3
 actuator-types/base.txt
 actuator-types/shoulder.txt

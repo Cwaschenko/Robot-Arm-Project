@@ -10,7 +10,7 @@ test-3: tests/test-3-Matrix.cpp matrix.o tests/catch/catch.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 	./$@
 
-test-4: tests/test-4-arm.cpp matrix.o arm.o 3DPoint/3dpoint.o joint.o tests/catch/catch.o
+test-4: tests/test-4-arm.cpp matrix.o arm.o 3DPoint/3dpoint.o link.o joint.o tests/catch/catch.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 	./$@
 

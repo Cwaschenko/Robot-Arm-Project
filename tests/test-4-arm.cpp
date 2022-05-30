@@ -4,7 +4,8 @@
 
 TEST_CASE("Arm consructor")
 {
-	Arm A("arm-types/3DOF.txt")
+	Arm A("arm-types/3DOF.txt");
+	A.Display();
 }
 
 	

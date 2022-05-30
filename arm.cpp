@@ -9,6 +9,10 @@ Arm::Arm(std::string ARM_CONFIG)
 	fs.open(ARM_CONFIG);
 	
 	getline(fs, CurrentLine);
+	CurrentLine.erase(CurrentLine.length()-1);
+	this->Name = CurrentLine;
+
+	getline(fs, CurrentLine);
 	ss.str(CurrentLine);
 	ss >> this->NumOfJoints;
 
@@ -18,15 +22,23 @@ Arm::Arm(std::string ARM_CONFIG)
 		CurrentLine.erase(CurrentLine.length()-1);
 		this->AddJoint(CurrentLine);
 	}
+
 	getline(fs, CurrentLine);
 	ss.str(CurrentLine);
 	ss >> this->NumOfLinks;
+
 	for(int i = 0; i < this->NumOfLinks; ++i)
 	{
 		getline(fs, CurrentLine);
-		CurrentLine.erase(CurrentLine.length()-1);
-		this->AddJoint(CurrentLine);
+		ss.str(CurrentLine);
+		int BasePos;
+		int EndPos;
+		float Length;
+
+		ss >> BasePos >> EndPos >> Length;
+		this->AddLink(BasePos, EndPos, Length);
 	}
+
 	fs.close();
 }
 
@@ -34,4 +46,21 @@ void Arm::AddJoint(std::string ACTUATOR_CONFIG)
 {
 	Joint* AddedJoint = new Joint(ACTUATOR_CONFIG);
 	this->Joints.push_back(AddedJoint);
+}
+
+void Arm::AddLink(int BasePos, int EndPos, float Length)
+{
+
+	Link* AddedLink = new Link(this->Joints.at(BasePos), this->Joints.at(EndPos),Length);
+	this->Links.push_back(AddedLink);
+
+}
+
+void Arm::Display()
+{
+	std::cout << this->Name << std::endl;
+	for(auto j : this->Joints)
+	{
+		j->Display();
+	}	
 }
