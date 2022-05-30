@@ -9,8 +9,10 @@ class Link
             Joint* Base;
             Joint* End;
             float length;
+            float Width;
+
     public:
-            Link(Joint* Base, Joint* End, float length);
+            Link(Joint* Base, Joint* End, float length, float Width);
             Joint* GetBase();
             Joint* GetEnd();
 

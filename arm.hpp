@@ -20,9 +20,11 @@ class Arm
 	public:
 		Arm(std::string ARM_CONFIG);
 		void AddJoint(std::string ACTUATOR_CONFIG);
-		void AddLink(int BasePos, int EndPos, float Length);
+		void AddLink(int BasePos, int EndPos, float Length, float Width);
 		void Display();
 		Joint* GetJoint(int JointIndex);
+		Link* GetLink(int LinkIndex);
+		Point3 GetEndPosition();
 		void Rotate(int,float);
 
 

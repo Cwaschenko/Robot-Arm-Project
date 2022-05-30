@@ -32,12 +32,17 @@ Arm::Arm(std::string ARM_CONFIG)
 		int BasePos;
 		int EndPos;
 		float Length;
+		float Width;
+		ss >> BasePos >> EndPos >> Length >> Width;
+		this->AddLink(BasePos, EndPos, Length, Width);
 
-		ss >> BasePos >> EndPos >> Length;
-		this->AddLink(BasePos, EndPos, Length);
 	}
 
 	fs.close();
+
+	// Positioning Each Actuator in correct spot
+
+
 }
 
 void Arm::AddJoint(std::string ACTUATOR_CONFIG)
@@ -46,10 +51,10 @@ void Arm::AddJoint(std::string ACTUATOR_CONFIG)
 	this->Joints.push_back(AddedJoint);
 }
 
-void Arm::AddLink(int BasePos, int EndPos, float Length)
+void Arm::AddLink(int BasePos, int EndPos, float Length, float Width)
 {
 
-	Link* AddedLink = new Link(this->Joints.at(this->Joints.size()-BasePos), this->Joints.at(this->Joints.size()-EndPos), Length);
+	Link* AddedLink = new Link(this->Joints.at(this->Joints.size()-BasePos), this->Joints.at(this->Joints.size()-EndPos), Length, Width);
 	this->Links.push_back(AddedLink);
 
 }
@@ -57,6 +62,10 @@ void Arm::AddLink(int BasePos, int EndPos, float Length)
 Joint* Arm::GetJoint(int JointIndex)
 {
 	return this->Joints.at(JointIndex);
+}
+Link* Arm::GetLink(int LinkIndex)
+{
+	return this->Links.at(LinkIndex);
 }
 
 
