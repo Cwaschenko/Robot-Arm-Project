@@ -7,11 +7,14 @@ TEST_CASE("Arm consructor")
 {
 	Arm A("arm-types/3DOF.txt");
 	A.Display();
-	std::cout << "\n\n"	;
-	A.GetJoint(2)->Display();
-	A.GetJoint(1)->Display();
-	A.GetJoint(0)->Display();
 
+	CHECK(*A.GetJoint(1)->GetPos() == Point3(80,0,170) );
+
+	CHECK(*A.GetJoint(2)->GetPos() == Point3(0,0,340) );
+
+	CHECK(A.GetEndPosition() == Point3(-10,0,380));
+
+	
 
 }
 
