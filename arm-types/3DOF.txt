@@ -2,5 +2,6 @@
 actuator-types/base.txt
 actuator-types/shoulder.txt
 actuator-types/elbow.txt
+2
 1 2 300
-
+2 3 40

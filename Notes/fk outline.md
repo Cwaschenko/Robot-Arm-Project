@@ -25,7 +25,7 @@ class Matrix: Matrix(string name, int NumOfCols, int NumOfRows);
 - able to rotate joint 
   
 ## Arm 
-- holds an array of joints determined by __NumOfJoints__
+- holds an array of joints determined by __NumOfJoints + 1__
 - can chose a joint then rotate it
   - calculate each point relative to base frame
 - returns each joint position and angle
