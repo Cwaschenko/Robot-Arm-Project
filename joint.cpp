@@ -50,8 +50,7 @@ Joint::~Joint()
 
 void Joint::Display()
 {
-	std::cout << this->Name << "\t| Angle: " << this->Angle << "\t| Current Position: " << this->Pos;
-	std::cout << "\t| Orientation: " << this-> Orientation << std::endl;
+	std::cout << this->Name << "\tAngle: " << this->Angle << " Current Position: " << *this->Pos  << " Orientation: " << this-> Orientation << std::endl;
 }
 
 void Joint::Rotate(float Angle)

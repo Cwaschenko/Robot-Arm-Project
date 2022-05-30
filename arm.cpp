@@ -15,7 +15,6 @@ Arm::Arm(std::string ARM_CONFIG)
 	getline(fs, CurrentLine);
 	ss.str(CurrentLine);
 	ss >> this->NumOfJoints;
-
 	for(int i = 0; i < this->NumOfJoints; ++i)
 	{
 		getline(fs, CurrentLine);
@@ -26,7 +25,6 @@ Arm::Arm(std::string ARM_CONFIG)
 	getline(fs, CurrentLine);
 	ss.str(CurrentLine);
 	ss >> this->NumOfLinks;
-
 	for(int i = 0; i < this->NumOfLinks; ++i)
 	{
 		getline(fs, CurrentLine);
@@ -51,7 +49,7 @@ void Arm::AddJoint(std::string ACTUATOR_CONFIG)
 void Arm::AddLink(int BasePos, int EndPos, float Length)
 {
 
-	Link* AddedLink = new Link(this->Joints.at(BasePos), this->Joints.at(EndPos),Length);
+	Link* AddedLink = new Link(this->Joints.at(this->Joints.size()-BasePos), this->Joints.at(this->Joints.size()-EndPos), Length);
 	this->Links.push_back(AddedLink);
 
 }
