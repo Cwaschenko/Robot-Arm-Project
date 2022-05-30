@@ -15,6 +15,9 @@ Joint::Joint(std::string AcuatorType)
 		getline(fs, CurrentLine);
 		ss.str(CurrentLine);
 		ss >> this->Height >> this->Width;
+		getline(fs, CurrentLine);
+		ss.str(CurrentLine);
+		ss >> this->Orientation;
 		fs.close();
 		
 		this->Angle = 0.0;

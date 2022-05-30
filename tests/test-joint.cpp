@@ -12,11 +12,12 @@ TEST_CASE("Testing Joint Configuration with Input File")
 	CHECK(newJoint.GetAngle() == 0.0);
 	CHECK(newJoint.GetHeight() == 110);
 	CHECK(newJoint.GetWidth() == 120);
+	CHECK(newJoint.GetOrientation() == 0);
 	CHECK(*newJoint.GetPos() == *CurrentPos);
 	
 	std::cout << newJoint.GetName() << "\nAngle: " << newJoint.GetAngle() << "\n";
 	
-	std::cout << "Acuator Height: " << newJoint.GetHeight() << "\nAcuator Width: " << newJoint.GetWidth() << "\n";
+	std::cout << "Acuator Height: " << newJoint.GetHeight() << "\nAcuator Width: " << newJoint.GetWidth() << "\nOrientation:" << newJoint.GetOrientation() << "\n";
 
 	std::cout << "Current Position: "<< *newJoint.GetPos() << "\n";
 	delete CurrentPos;
