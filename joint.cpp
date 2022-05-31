@@ -16,7 +16,7 @@ Joint::Joint(std::string AcuatorType)
 		ss >> this->Height >> this->Width >> this->DistanceToCarrier;
 		getline(fs, CurrentLine);
 		ss.str(CurrentLine);
-		ss >> this->Orientation;
+		ss >> this->Orientation >> this->side;
 		fs.close();
 		
 		this->Angle = 0.0;
@@ -49,7 +49,8 @@ Joint::~Joint()
 
 void Joint::Display()
 {
-	std::cout << this->Name << " Angle: " << this->Angle << " Current Position: " << *this->Pos  << " Orientation: " << this-> Orientation << std::endl;
+	std::cout << this->Name << " Angle: " << this->Angle << " Current Position: " << *this->Pos;
+	std::cout << " Orientation: " << this-> Orientation << " Side: "<< this->side <<  std::endl;
 }
 
 void Joint::Rotate(float Angle)
@@ -92,4 +93,9 @@ float Joint::GetHeight()
 float Joint::GetWidth()
 {
 	return this->Width;
+}
+
+int Joint::GetSide()
+{
+	return this->side;
 }

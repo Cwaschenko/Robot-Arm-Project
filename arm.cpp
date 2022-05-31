@@ -63,8 +63,16 @@ Arm::Arm(std::string ARM_CONFIG)
 				}
 				else	// Horizantal ->
 				{
-					PreviousPoint = this->GetJoint(i-1)->GetPos();
-					CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2, 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+					if(CurrentJoint->GetSide() == 1) // Actuator is facing inward 
+					{
+						PreviousPoint = this->GetJoint(i-1)->GetPos();
+						CurrentJoint->SetPos(PreviousPoint + Point3(-(CurrentJoint->GetDistanceToCarrier() - CurrentLink->GetWidth()/2) , 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+					}
+					else // Actuator is facing outward
+					{
+						PreviousPoint = this->GetJoint(i-1)->GetPos();
+						CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2, 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+					}
 				}
 			}
 			else
@@ -76,8 +84,16 @@ Arm::Arm(std::string ARM_CONFIG)
 				}
 				else // Horizantal ->
 				{
-					PreviousPoint = this->GetJoint(i-1)->GetPos();
-					CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier(),0,CurrentJoint->GetWidth()/2));
+					if(CurrentJoint->GetSide() == 1) // Actuator is facing inward 
+					{
+						PreviousPoint = this->GetJoint(i-1)->GetPos();
+						CurrentJoint->SetPos(PreviousPoint + Point3(-(CurrentJoint->GetDistanceToCarrier() - CurrentLink->GetWidth()/2) , 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+					}
+					else // Actuator is facing outward
+					{
+						PreviousPoint = this->GetJoint(i-1)->GetPos();
+						CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2, 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+					}
 				}
 			}
 		}
