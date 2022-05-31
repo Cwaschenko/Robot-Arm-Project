@@ -14,6 +14,7 @@ class Arm
 		std::string Name;
 		int NumOfJoints;
 		int NumOfLinks;;
+		Point3 EndPosition;
         std::vector<Joint*> Joints;
 		std::vector<Link*> Links;
 
@@ -22,6 +23,7 @@ class Arm
 		void AddJoint(std::string ACTUATOR_CONFIG);
 		void AddLink(int BasePos, int EndPos, float Length, float Width);
 		void Display();
+		Link* HasLink(Joint* Queried);
 		Joint* GetJoint(int JointIndex);
 		Link* GetLink(int LinkIndex);
 		Point3 GetEndPosition();

@@ -6,7 +6,6 @@ Joint::Joint(std::string AcuatorType)
 		std::stringstream ss;
 		std::string CurrentLine = "";
 		std::string additional = "";
-		float CurrentNumber;
 
 		fs.open(AcuatorType);
 		getline(fs, CurrentLine);
@@ -14,7 +13,7 @@ Joint::Joint(std::string AcuatorType)
 		this->Name = CurrentLine;
 		getline(fs, CurrentLine);
 		ss.str(CurrentLine);
-		ss >> this->Height >> this->Width;
+		ss >> this->Height >> this->Width >> this->DistanceToCarrier;
 		getline(fs, CurrentLine);
 		ss.str(CurrentLine);
 		ss >> this->Orientation;
@@ -66,9 +65,14 @@ std::string Joint::GetName()
 {
 	return this->Name;
 }
-Point3* Joint::GetPos()
+Point3 Joint::GetPos()
 {
-	return this->Pos;
+	return *this->Pos;
+}
+
+int Joint::GetDistanceToCarrier()
+{
+	return this->DistanceToCarrier;
 }
 
 float Joint::GetAngle()

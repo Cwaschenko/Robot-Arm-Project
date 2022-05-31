@@ -13,6 +13,8 @@ class Link
 
     public:
             Link(Joint* Base, Joint* End, float length, float Width);
+            float GetLength();
+            float GetWidth();
             Joint* GetBase();
             Joint* GetEnd();
 

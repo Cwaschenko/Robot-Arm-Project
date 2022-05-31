@@ -42,6 +42,8 @@ Arm::Arm(std::string ARM_CONFIG)
 
 	// Positioning Each Actuator in correct spot
 	Joint* CurrentJoint = nullptr;
+	Point3 PreviousPoint;
+	Link* CurrentLink = nullptr;
 	for(int i = 0; i < this->NumOfJoints; ++i)
 	{
 		CurrentJoint = this->GetJoint(i);
@@ -51,26 +53,31 @@ Arm::Arm(std::string ARM_CONFIG)
 		}
 		else
 		{
-			if(this->HasLink(CurrentJoint))
+			CurrentLink = this->HasLink(CurrentJoint);
+			if(CurrentLink != nullptr)
 			{
-				if(CurrentJoint->GetOrientation() == 0) // Vertical
-				{
-					CurrentJoint->SetPos(Point3()); //Height +
+				if(CurrentJoint->GetOrientation() == 0) // Vertical ^ 
+				{                        
+					PreviousPoint = this->GetJoint(i-1)->GetPos();               //          
+					CurrentJoint->SetPos(PreviousPoint + Point3(0,0,CurrentJoint->GetHeight() + CurrentLink->GetLength())); //Height + Joint i-1 Position 
 				}
-				else
+				else	// Horizantal ->
 				{
-
+					PreviousPoint = this->GetJoint(i-1)->GetPos();
+					CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2, 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
 				}
 			}
 			else
 			{
-				if(CurrentJoint->GetOrientation() == 0)
+				if(CurrentJoint->GetOrientation() == 0) // Vertical ^
 				{
-					CurrentJoint->SetPos(Point3());
+					PreviousPoint = this->GetJoint(i-1)->GetPos();                 
+					CurrentJoint->SetPos(PreviousPoint + Point3(0,0,CurrentJoint->GetHeight()));
 				}
-				else
+				else // Horizantal ->
 				{
-
+					PreviousPoint = this->GetJoint(i-1)->GetPos();
+					CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier(),0,CurrentJoint->GetWidth()/2));
 				}
 			}
 		}
@@ -101,7 +108,13 @@ Link* Arm::GetLink(int LinkIndex)
 	return this->Links.at(LinkIndex);
 }
 
-bool Arm::HasLink(Joint* Quaried)
+Point3 Arm::GetEndPosition()
+{
+	return this->EndPosition;
+}
+
+
+Link* Arm::HasLink(Joint* Quaried)
 {
 	Link* CurrentLink = nullptr;
 	for(int i = 0; i < this->NumOfLinks; ++i)
@@ -109,10 +122,10 @@ bool Arm::HasLink(Joint* Quaried)
 		CurrentLink = this->GetLink(i);
 		if(Quaried == CurrentLink->GetBase())
 		{
-			return true;
+			return CurrentLink;
 		}
 	}
-	return false;
+	return nullptr;
 }
 
 void Arm::Display()

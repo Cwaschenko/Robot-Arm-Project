@@ -14,6 +14,7 @@ class Joint
 		std::string Name;
 		float Height;
 		float Width;
+		int DistanceToCarrier;
 		int Orientation;
 		Point3* Pos;
 		float  Angle;
@@ -28,8 +29,9 @@ class Joint
 		void SetPos(Point3 Pos);
 		float GetHeight();
 		float GetWidth();
+		int GetDistanceToCarrier();
 		std::string GetName();
-		Point3* GetPos();
+		Point3 GetPos();
 		int GetOrientation();
 		float  GetAngle();
 		

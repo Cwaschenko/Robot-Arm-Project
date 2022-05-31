@@ -18,3 +18,13 @@ Joint* Link::GetEnd()
 {
     return this->End;
 }
+
+float Link::GetLength()
+{
+    return this->length;
+}
+
+float Link::GetWidth()
+{
+    return this->Width;
+}
