@@ -53,7 +53,8 @@ Arm::Arm(std::string ARM_CONFIG)
 		}
 		else
 		{
-			CurrentLink = this->HasLink(CurrentJoint);
+			CurrentLink = this->IsLinkEnd(CurrentJoint);
+			
 			if(CurrentLink != nullptr)
 			{
 				if(CurrentJoint->GetOrientation() == 0) // Vertical ^ 
@@ -66,17 +67,20 @@ Arm::Arm(std::string ARM_CONFIG)
 					if(CurrentJoint->GetSide() == 1) // Actuator is facing inward 
 					{
 						PreviousPoint = this->GetJoint(i-1)->GetPos();
-						CurrentJoint->SetPos(PreviousPoint + Point3(-(CurrentJoint->GetDistanceToCarrier() - CurrentLink->GetWidth()/2) , 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+						CurrentJoint->SetPos(PreviousPoint + Point3(-(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2) , 0, CurrentJoint->GetWidth()/2 + CurrentLink->GetLength() ));
 					}
 					else // Actuator is facing outward
 					{
 						PreviousPoint = this->GetJoint(i-1)->GetPos();
-						CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2, 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+						CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2, 0, CurrentJoint->GetWidth()/2 + CurrentLink->GetLength()));
 					}
 				}
 			}
+                                                                                                
+//--------------------------------------------------- is not a Link End 
 			else
 			{
+				
 				if(CurrentJoint->GetOrientation() == 0) // Vertical ^
 				{
 					PreviousPoint = this->GetJoint(i-1)->GetPos();                 
@@ -84,15 +88,32 @@ Arm::Arm(std::string ARM_CONFIG)
 				}
 				else // Horizantal ->
 				{
-					if(CurrentJoint->GetSide() == 1) // Actuator is facing inward 
+					CurrentLink = this->IsLinkBase(CurrentJoint); // joint is a base to a link
+					if(CurrentLink == nullptr)
 					{
-						PreviousPoint = this->GetJoint(i-1)->GetPos();
-						CurrentJoint->SetPos(PreviousPoint + Point3(-(CurrentJoint->GetDistanceToCarrier() - CurrentLink->GetWidth()/2) , 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+						if(CurrentJoint->GetSide() == 1) // Actuator is facing inward 
+						{
+							PreviousPoint = this->GetJoint(i-1)->GetPos();
+							CurrentJoint->SetPos(PreviousPoint + Point3(-(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2), 0, CurrentJoint->GetWidth()/2));
+						}
+						else // Actuator is facing outward
+						{
+							PreviousPoint = this->GetJoint(i-1)->GetPos();
+							CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2, 0, CurrentJoint->GetWidth()/2));
+						}
 					}
-					else // Actuator is facing outward
+					else // has no link
 					{
-						PreviousPoint = this->GetJoint(i-1)->GetPos();
-						CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier() + CurrentLink->GetWidth()/2, 0, CurrentLink->GetLength()+CurrentJoint->GetWidth()/2));
+						if(CurrentJoint->GetSide() == 1) // Actuator is facing inward 
+						{
+							PreviousPoint = this->GetJoint(i-1)->GetPos();
+							CurrentJoint->SetPos(PreviousPoint + Point3(-(CurrentJoint->GetDistanceToCarrier()), 0, CurrentJoint->GetWidth()/2));
+						}
+						else // Actuator is facing outward
+						{
+							PreviousPoint = this->GetJoint(i-1)->GetPos();
+							CurrentJoint->SetPos(PreviousPoint + Point3(CurrentJoint->GetDistanceToCarrier(), 0, CurrentJoint->GetWidth()/2));
+						}
 					}
 				}
 			}
@@ -109,10 +130,16 @@ void Arm::AddJoint(std::string ACTUATOR_CONFIG)
 
 void Arm::AddLink(int BasePos, int EndPos, float Length, float Width)
 {
-
-	Link* AddedLink = new Link(this->Joints.at(this->Joints.size()-BasePos), this->Joints.at(this->Joints.size()-EndPos), Length, Width);
-	this->Links.push_back(AddedLink);
-
+	if (EndPos < 0)
+	{
+		Link* AddedLink = new Link(this->Joints.at(BasePos),nullptr, Length, Width);
+		this->Links.push_back(AddedLink);	
+	}
+	else
+	{
+		Link* AddedLink = new Link(this->Joints.at(BasePos), this->Joints.at(EndPos), Length, Width);
+		this->Links.push_back(AddedLink);
+	}
 }
 
 Joint* Arm::GetJoint(int JointIndex)
@@ -130,7 +157,7 @@ Point3 Arm::GetEndPosition()
 }
 
 
-Link* Arm::HasLink(Joint* Quaried)
+Link* Arm::IsLinkBase(Joint* Quaried)
 {
 	Link* CurrentLink = nullptr;
 	for(int i = 0; i < this->NumOfLinks; ++i)
@@ -143,6 +170,21 @@ Link* Arm::HasLink(Joint* Quaried)
 	}
 	return nullptr;
 }
+
+Link* Arm::IsLinkEnd(Joint* Quaried)
+{
+	Link* CurrentLink = nullptr;
+	for(int i = 0; i < this->NumOfLinks; ++i)
+	{
+		CurrentLink = this->GetLink(i);
+		if(Quaried == CurrentLink->GetEnd())
+		{
+			return CurrentLink;
+		}
+	}
+	return nullptr;
+}
+
 
 void Arm::Display()
 {
