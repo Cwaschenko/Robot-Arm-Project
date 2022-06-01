@@ -14,7 +14,7 @@ TEST_CASE("Arm consructor")
 
 	CHECK(A.GetJoint(2)->GetPos() == Point3(-20,0,340) );
 
-	CHECK(A.GetEndPosition() == Point3(-10,0,380));
+	CHECK(A.GetEndPosition() == Point3(-30,0,380));
 
 }
 

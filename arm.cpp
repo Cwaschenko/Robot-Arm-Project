@@ -119,7 +119,32 @@ Arm::Arm(std::string ARM_CONFIG)
 			}
 		}
 	}
+	// End Position Location
+	Joint* LastJoint = this->GetJoint(this->NumOfJoints-1);
+	Link* LastLink = IsLinkBase(LastJoint);
+	if(LastLink == nullptr) // does not have link
+	{
+		this->EndPosition = LastJoint->GetPos();
+	}
+	else //does have link
+	{
+		if(LastJoint->GetOrientation() == 0) // Vertical
+			{
+				this->EndPosition = LastJoint->GetPos() + Point3(0,0,LastLink->GetLength());
+			}
+			else // Horizantal
+			{
+				if(LastJoint->GetSide() == 1) // Actuator is facing inward 
+				{
+					this->EndPosition = LastJoint->GetPos() + Point3(-(LastLink->GetWidth()/2),0,LastLink->GetLength());
 
+				}
+				else // Actuator is facing outward
+				{
+					this->EndPosition = LastJoint->GetPos() + Point3(LastLink->GetWidth()/2,0,LastLink->GetLength());
+				}
+			}
+	}
 }
 
 void Arm::AddJoint(std::string ACTUATOR_CONFIG)
