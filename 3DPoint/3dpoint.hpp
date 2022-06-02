@@ -21,6 +21,7 @@ class Point3
 		
 		Point3 operator =(const Point3& EqualTo);
 		Point3 operator +(const Point3& Added);
+		Point3 operator -(const Point3& Subtracted);
 		friend std::ostream& operator <<  (std::ostream& out, const Point3& point);
 };
 

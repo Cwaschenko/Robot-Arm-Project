@@ -18,5 +18,14 @@ TEST_CASE("Arm consructor")
 
 }
 
+TEST_CASE("Forward Kinematics")
+{
+	Arm A("arm-types/3DOF.txt");
+
+	A.Rotate(0,30);
+
+	CHECK(A.GetJoint(1)->GetPos() == Point3(69.282,40,170) ); // 30 degrees
+}
+
 	
 

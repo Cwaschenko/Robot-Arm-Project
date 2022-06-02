@@ -51,6 +51,17 @@ Point3 Point3::operator+(const Point3& Added)
 	return *this;
 }
 
+Point3 Point3::operator -(const Point3& Subtracted)
+{
+	
+	this->x -= Subtracted.GetX();
+	this->y -= Subtracted.GetY();
+	this->z -= Subtracted.GetZ();
+
+	return *this;
+}
+
+
 float Point3::GetX() const
 {
 	return this->x;
