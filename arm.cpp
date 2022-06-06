@@ -219,3 +219,24 @@ void Arm::Display()
 		j->Display();
 	}	
 }
+
+void Arm::Rotate(int JointIndex,float DesiredAngle)
+{
+	Joint* RotatedJoint = this->GetJoint(JointIndex);
+
+	MatrixXf RotatePos(1,3);
+	RotatePos(0,0) = RotatedJoint->GetPos().GetX();
+	RotatePos(0,1) = RotatedJoint->GetPos().GetY();
+	RotatePos(0,2) = RotatedJoint->GetPos().GetZ();
+
+	MatrixXf RotationMatrix(3,3);
+	
+	if(RotatedJoint->GetOrientation() == 1) // rotate X-axis
+	{
+
+	}
+
+
+	RotatedJoint->Rotate(DesiredAngle);
+
+}

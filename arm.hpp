@@ -1,12 +1,13 @@
 #ifndef ARM_HPP
 #define ARM_HPP
-#include "matrix.hpp"
+#include <Eigen-Lib/Dense>
 #include <string>
 #include <sstream>
 #include <fstream>
 #include <vector>
 #include "joint.hpp"
 #include "link.hpp"
+using Eigen::Matrix1f;
 
 class Arm
 {
@@ -28,7 +29,7 @@ class Arm
 		Joint* GetJoint(int JointIndex);
 		Link* GetLink(int LinkIndex);
 		Point3 GetEndPosition();
-		void Rotate(int,float);
+		void Rotate( int JointIndex , float DesiredAngle);
 
 
 

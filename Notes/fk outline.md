@@ -62,9 +62,9 @@ what can be wrapped in link class
 
 --- 
 ```
- 0
-R   means rotation of frame one relative to frame zero
  1
+R   means rotation of frame one relative to frame zero
+ 0
 
 	multiple rotations need dot product to compute full rotation	
 
@@ -101,7 +101,7 @@ x0 | 1            0             0
 y0 | 0            1             0
 z0 | 0            0             1
 
- 0    0 1
-R  = R R
  2    1 2
+R  = R R
+ 0    0 1
 ```
